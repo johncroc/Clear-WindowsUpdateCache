@@ -4,7 +4,7 @@
 function Get-FreeDiskSpace {
     $OS = Get-WmiObject -Class Win32_OperatingSystem
     $Disk = Get-WmiObject Win32_LogicalDisk -Filter "DeviceID='$($os.SystemDrive)'" |
-        Select @{Name="FreeGB";Expression={[math]::Round($_.FreeSpace / 1GB, 2)}}
+        Select-Object @{Name="FreeGB";Expression={[math]::Round($_.FreeSpace / 1GB, 2)}}
     return $Disk.FreeGB
 }
 
